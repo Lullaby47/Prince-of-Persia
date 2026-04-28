@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
-  <title>Prince of Persia — The Eternal Chronicle | Mobile Legend</title>
-  <!-- Google Fonts: elegant & readable -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <title>Prince of Persia — The Eternal Chronicle | Mobile Optimized</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -41,12 +41,12 @@
     .container {
       position: relative;
       z-index: 2;
-      max-width: 700px;
+      max-width: 100%;
       margin: 0 auto;
       padding: 1rem 1rem 2rem;
     }
 
-    /* Hero section */
+    /* Hero section remains elegant */
     .hero {
       background: linear-gradient(125deg, #0a1020 0%, #151e30 100%);
       border-radius: 1.8rem;
@@ -82,7 +82,7 @@
       color: #cddcf2;
     }
 
-    /* vertical alternating blocks: image then text, image then text */
+    /* VERTICAL BLOCKS: image then text, never side by side */
     .vertical-block {
       margin-bottom: 1.8rem;
     }
@@ -95,7 +95,6 @@
       margin-bottom: 1rem;
       border: 1px solid rgba(230, 180, 70, 0.25);
       box-shadow: 0 8px 20px -5px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease;
     }
 
     .image-card img {
@@ -122,7 +121,6 @@
       border-radius: 1.5rem;
       border: 1px solid rgba(230, 180, 70, 0.25);
       padding: 1.3rem;
-      transition: all 0.2s ease;
       box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     }
 
@@ -159,7 +157,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Mechanics row (inside text card, but vertical on mobile) */
     .mechanics-stack {
       display: flex;
       flex-wrap: wrap;
@@ -230,23 +227,25 @@
       font-weight: 500;
     }
 
-    /* No horizontal splits anywhere — pure vertical flow */
-    @media (max-width: 680px) {
+    /* FORCE VERTICAL ONLY — no flex row, no grid columns side by side */
+    @media (min-width: 1200px) {
       .container {
-        padding: 0.8rem;
+        max-width: 800px;
       }
-      .hero h1 {
-        font-size: 1.9rem;
+      /* keep vertical stacking even on desktop — we want pure image→text flow */
+      .vertical-block {
+        margin-bottom: 2rem;
       }
-      .card-title {
-        font-size: 1.3rem;
-      }
-      .text-card {
-        padding: 1rem;
-      }
-      .mech-item {
-        min-width: 100%;
-      }
+    }
+
+    /* ensure no horizontal layouts appear */
+    .split-layout, .flex-row {
+      display: none;
+    }
+
+    /* extra safety: all blocks are block-level */
+    .vertical-block, .image-card, .text-card {
+      width: 100%;
     }
   </style>
 </head>
@@ -265,8 +264,8 @@
     </div>
   </div>
 
-  <!-- VERTICAL ALTERNATING SEQUENCE: IMAGE → TEXT → IMAGE → TEXT … -->
-  
+  <!-- ========== VERTICAL ALTERNATING: IMAGE → TEXT, IMAGE → TEXT ========== -->
+
   <!-- BLOCK 1: prince1.png (image) THEN text (Genesis) -->
   <div class="vertical-block">
     <div class="image-card">
@@ -275,12 +274,12 @@
     </div>
     <div class="text-card">
       <div class="card-title"><i class="fas fa-landmark"></i><span>Genesis of a Legend</span></div>
-      <p>In 1989, <span class="highlight">Jordan Mechner</span> unleashed a masterpiece. <strong>Prince of Persia</strong> introduced <span class="highlight">rotoscoped animation</span> — filming real human motion and tracing frame by frame — delivering fluid, lifelike movement never seen before in games. Published by Brøderbund, the game became a watershed for cinematic platformers. Every leap, clash, and precarious ledge felt visceral and dangerous. It didn't just influence games; it redefined interactive tension and elegance.</p>
+      <p>In 1989, <span class="highlight">Jordan Mechner</span> unleashed a masterpiece. <strong>Prince of Persia</strong> introduced <span class="highlight">rotoscoped animation</span> — filming real human motion and tracing frame by frame — delivering fluid, lifelike movement never seen before in games. Published by Brøderbund, the game became a watershed for cinematic platformers. Every leap, clash, and precarious ledge felt visceral and dangerous. It didn't just influence games; it redefined interactive tension and elegance. The <strong>60-minute time limit</strong> (real time) created relentless pressure, while <strong>one-hit-kill sword fights</strong> demanded precision. Prince of Persia wasn't just a game; it was a piece of interactive cinema.</p>
       <div class="btn-soft" style="margin-top: 0.7rem;"><i class="fas fa-film"></i> Rotoscoping: The soul of the Prince</div>
     </div>
   </div>
 
-  <!-- BLOCK 2: prince2.png (image) THEN text (Story) -->
+  <!-- BLOCK 2: prince2.png (image) THEN text (Story & Vizier) -->
   <div class="vertical-block">
     <div class="image-card">
       <img src="img/prince2.png" alt="Sword duel against palace guard" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e2a3a/f5b81b?text=prince2.png';">
@@ -288,12 +287,12 @@
     </div>
     <div class="text-card">
       <div class="card-title"><i class="fas fa-crown"></i><span>The Vizier's Tyranny & Lore</span></div>
-      <p>The evil <span class="highlight">Vizier Jaffar</span> seizes the palace, forcing the princess into an unwanted marriage. You are the lone hero — imprisoned in the dungeons, with only <span class="highlight">60 minutes</span> to escape, survive deadly traps (spikes, collapsing tiles, guillotines), and defeat Jaffar's elite guards. Time flows relentlessly, displayed as a real-hour countdown — a mechanic that elevated tension to new heights. The princess, no passive damsel, drops hints and a crucial potion to aid you. The story blends Persian mythology with a desperate race against fate. Will you reach the tower before the hourglass empties?</p>
+      <p>The evil <span class="highlight">Vizier Jaffar</span> seizes the palace, forcing the princess into an unwanted marriage. You are the lone hero — imprisoned in the dungeons, with only <span class="highlight">60 minutes</span> to escape, survive deadly traps (spikes, collapsing tiles, guillotines), and defeat Jaffar's elite guards. Time flows relentlessly, displayed as a real-hour countdown — a mechanic that elevated tension to new heights. The princess, no passive damsel, drops hints and a crucial potion to aid you. The story blends Persian mythology with a desperate race against fate. Will you reach the tower before the hourglass empties? The emotional narrative, rare for its time, elevated the game to legendary status.</p>
       <div><span class="badge-year"><i class="far fa-clock"></i> One hour limit</span> <span class="badge-year"><i class="fas fa-skull"></i> 14 lethal levels</span></div>
     </div>
   </div>
 
-  <!-- GAMEPLAY MECHANICS CARD (full text, no image - informative block) -->
+  <!-- GAMEPLAY MECHANICS CARD (full width text, informative) -->
   <div class="text-card" style="margin-bottom: 1.5rem;">
     <div class="card-title"><i class="fas fa-dagger"></i><span>Mastery: Movement, Combat & Traps</span></div>
     <div class="mechanics-stack">
@@ -302,7 +301,7 @@
       <div class="mech-item"><i class="fas fa-hourglass-half"></i> <strong>60 min rush</strong><br><span style="font-size:0.7rem;">Real-time pressure, no pause</span></div>
       <div class="mech-item"><i class="fas fa-flask"></i> <strong>Mystic potions</strong><br><span style="font-size:0.7rem;">Heal, poison or invincibility?</span></div>
     </div>
-    <p style="margin-top: 0.8rem; font-size:0.85rem;">The original included skeleton guards that rise from the dead, mirror puzzles where the Prince confronts his shadow, and the infamous spikes of doom. Level design encourages experimentation but punishes carelessness — a true test of skill and memory.</p>
+    <p style="margin-top: 0.8rem; font-size:0.85rem;">The original included memorable elements: <span class="highlight">skeleton guards</span> that rise from the dead, <span class="highlight">mirror puzzles</span> where the Prince must confront his own shadow, and the infamous <span class="highlight">spikes of doom</span>. Level design encourages experimentation but punishes carelessness — a true test of skill and memory. The game's fluid movement set a standard that inspired later classics like <strong>Tomb Raider</strong> and <strong>Assassin's Creed</strong> parkour.</p>
   </div>
 
   <!-- BLOCK 3: prince3.png (image) THEN text (History & Ports) -->
@@ -313,26 +312,26 @@
     </div>
     <div class="text-card">
       <div class="card-title"><i class="fas fa-chronometer"></i><span>80s Revolution & Global Ports</span></div>
-      <p>After its Apple II debut, <strong>Prince of Persia</strong> spread like wildfire across <span class="highlight">Amiga, NES, Genesis, SNES, DOS, Mac, Game Boy, and more</span>. It became a worldwide phenomenon, selling millions of copies. Critics praised the cinematic atmosphere, fluid sword fighting, and haunting music. The game set a benchmark for platformers and inspired a generation of developers, including the creators of <span class="highlight">Tomb Raider</span> and <span class="highlight">Assassin's Creed</span>. In 1992, the sequel "Prince of Persia 2: The Shadow and the Flame" expanded the saga, but the original remains untouched in its purity of design, still played and speedrun today.</p>
+      <p>After its Apple II debut, <strong>Prince of Persia</strong> spread like wildfire across <span class="highlight">Amiga, NES, Genesis, SNES, DOS, Mac, Game Boy, and more than 20 platforms</span>. It became a worldwide phenomenon, selling over <span class="highlight">2 million copies</span> in its first decade alone. Critics praised the cinematic atmosphere, fluid sword fighting, and haunting music. <strong>Computer Gaming World</strong> called it "a masterpiece of tension and design." The game set a benchmark for platformers and inspired a generation of developers, including the creators of <span class="highlight">Tomb Raider</span> and <span class="highlight">Assassin's Creed</span>. In 1992, the sequel "Prince of Persia 2: The Shadow and the Flame" expanded the saga, but the original remains untouched in its purity of design, still played and speedrun today.</p>
     </div>
   </div>
 
-  <!-- LEGACY GRID (vertical stack on mobile) -->
+  <!-- LEGACY GRID (vertical stack on mobile – ensures no horizontal columns) -->
   <div class="info-grid">
     <div class="info-panel">
       <div class="icon-gold"><i class="fas fa-microchip"></i></div>
       <h3 style="font-size:1.2rem;">Rotoscope Magic Deep Dive</h3>
-      <p>Jordan Mechner filmed his brother performing jumps and sword swings, traced each frame by hand onto paper, then digitized into the Apple II's 128KB RAM. This obsessive process gave the Prince realistic weight — every stumble and leap felt alive. The technique later influenced <strong>Another World</strong> and <strong>Flashback</strong>.</p>
+      <p>Jordan Mechner filmed his brother David performing jumps and sword swings, then traced each frame by hand onto paper. He digitized them into the Apple II's limited 128KB RAM. This obsessive process gave the Prince realistic weight — every stumble, leap, and fall felt alive. The technique later influenced <strong>Another World</strong> and <strong>Flashback</strong>, defining early cinematic gaming.</p>
     </div>
     <div class="info-panel">
       <div class="icon-gold"><i class="fas fa-dharmachakra"></i></div>
       <h3 style="font-size:1.2rem;">Sands of Time (2003)</h3>
-      <p>Ubisoft's reimagining introduced time-rewinding, acrobatic parkour, and a deep bond between the Prince and Farah. It became a landmark of 3D action-adventure, spawning the beloved trilogy: Warrior Within, Two Thrones, and the 2008 reboot. The franchise found new life and a new generation of fans.</p>
+      <p>Ubisoft acquired the rights and launched <strong>Prince of Persia: The Sands of Time</strong> — a 3D masterpiece introducing time-rewinding mechanics, acrobatic parkour, and a poignant story of betrayal and redemption. It revitalized the franchise, earning numerous Game of the Year awards. It spawned the darker <strong>Warrior Within</strong> (2004) and the epic conclusion <strong>The Two Thrones</strong> (2005). The 2008 reboot offered a cel-shaded artistic experiment.</p>
     </div>
     <div class="info-panel">
       <div class="icon-gold"><i class="fas fa-chart-line"></i></div>
       <h3 style="font-size:1.2rem;">Legacy & Accolades</h3>
-      <p>🏆 AIAS Hall of Fame · 🏆 GameSpot "Greatest Games of All Time" · 🏆 Strong Museum of Play inductee. Over <span class="highlight">20 million copies</span> sold across all versions. 2024’s <strong>The Lost Crown</strong> returns to 2D metroidvania style, honoring the original's spirit. Speedrunners still finish the 1989 game in under 18 minutes.</p>
+      <p>🏆 <span class="highlight">AIAS Hall of Fame</span> · 🏆 <span class="highlight">GameSpot "Greatest Games of All Time"</span> · 🏆 <span class="highlight">Strong National Museum of Play</span> inductee. Over <span class="highlight">20 million copies</span> sold across all versions. The 2010 Disney film adaptation starring Jake Gyllenhaal introduced the Prince to a new generation. In 2024, <strong>Prince of Persia: The Lost Crown</strong> returned to 2D roots with metroidvania flair, garnering 88+ Metacritic scores. Speedrunners still finish the original 1989 game in under 18 minutes.</p>
     </div>
   </div>
 
@@ -343,8 +342,8 @@
       <div class="image-caption"><i class="fas fa-heart"></i> Fateful reunion — hope against tyranny</div>
     </div>
     <div class="text-card">
-      <div class="card-title"><i class="fas fa-crown"></i><span>The Princess & Final Confrontation</span></div>
-      <p>In the original ending, the Prince must defeat Jaffar in a magical duel using a mirror and the princess's clever aid. She is not a passive trophy — she throws down a sword, warns of traps, and distracts the Vizier during the climax. Their bond transcends the typical damsel-in-distress trope, giving the story genuine heart. The final minutes remain iconic: two warriors, a descending hourglass, and true love deciding destiny. This emotional core influenced countless later narratives in gaming.</p>
+      <div class="card-title"><i class="fas fa-crown"></i><span>The Princess of Persia — A True Partner</span></div>
+      <p>Unlike many games of the era, the princess is not just a reward. She actively helps the Prince: she throws down a crucial sword when he is captured, warns about traps, and during the final duel with Jaffar, she distracts the Vizier, allowing the Prince to strike. Their relationship is built on mutual respect. The original ending (depending on the princess's health) can be tragic or triumphant, adding emotional depth. The climax against Jaffar is legendary: a mirrored duel where the princess's aid is essential. The final minutes remain iconic: two heroes, an hourglass, and true love deciding the fate of Persia. This character set a new standard for female representation in action-adventure games.</p>
       <div><span class="badge-year"><i class="fas fa-trophy"></i> Cultural icon</span> <span class="badge-year"><i class="fas fa-film"></i> 2010 Movie adaptation</span></div>
     </div>
   </div>
@@ -352,14 +351,14 @@
   <!-- QUOTE BLOCK + Jordan Mechner insight -->
   <div class="quote-block">
     <i class="fas fa-quote-left" style="font-size: 1.6rem; margin-right: 10px; color: #f5b81b; vertical-align: middle;"></i> 
-    "I wanted the player to feel every heartbeat, every near miss. By filming real motion, we captured the soul of a desperate hero." 
+    "I wanted the player to feel every heartbeat, every near miss. By filming real motion, we captured the soul of a desperate hero. The rotoscoping gave him the weight of a real person. When he falls, you feel it." 
     <div style="margin-top: 8px;">— <strong>Jordan Mechner</strong>, Creator & Game Designer</div>
     <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
       <span class="badge-year"><i class="fab fa-apple"></i> Apple II original</span>
       <span class="badge-year"><i class="fas fa-code"></i> 128KB of genius</span>
       <span class="badge-year"><i class="fas fa-users"></i> Brøderbund + Ubisoft</span>
     </div>
-    <p style="margin-top: 12px; font-size:0.85rem;"><span class="highlight">Trivia:</span> The famous falling scream was recorded by Mechner himself. Potion effects are randomized, adding replayability. The original music by Francis Mechner (Jordan's father) gave a haunting atmosphere.</p>
+    <p style="margin-top: 12px; font-size:0.85rem;"><span class="highlight">Trivia:</span> The famous falling scream was recorded by Mechner himself. Potion effects are randomized, adding replayability. The original music by Francis Mechner (Jordan's father) gave a haunting atmosphere on certain platforms. The game's development took over three years — a labor of love.</p>
   </div>
 
   <!-- Final supplementary info: modern tributes & speedrun -->
@@ -367,26 +366,26 @@
     <div style="background: #0f1522b3; border-radius: 1.2rem; padding: 1rem; border-left: 3px solid #e6b422;">
       <i class="fas fa-gamepad-modern" style="font-size: 1.3rem; color: #f5cd6e;"></i>
       <h3 style="margin: 0.2rem 0; font-size: 1rem;">The Lost Crown (2024)</h3>
-      <p style="font-size:0.85rem;">Ubisoft's triumphant return to 2D metroidvania style — praised for its fluidity, puzzles, and deep respect for the original. The Prince's legacy continues to inspire new adventures.</p>
+      <p style="font-size:0.85rem;">Ubisoft's triumphant return to 2D metroidvania style — praised for its fluidity, puzzles, and deep respect for the original spirit. The Prince's legacy continues to inspire new adventures, introducing the franchise to a new generation while honoring the 1989 classic.</p>
     </div>
     <div style="background: #0f1522b3; border-radius: 1.2rem; padding: 1rem; border-left: 3px solid #e6b422;">
       <i class="fas fa-tachometer-alt" style="font-size: 1.3rem; color: #f5cd6e;"></i>
       <h3 style="margin: 0.2rem 0; font-size: 1rem;">Speedrun Legacy</h3>
-      <p style="font-size:0.85rem;">The original 1989 version is still mastered by speedrunners who beat it under 19 minutes — a testament to timeless design and deep movement mastery. The community keeps the game alive on modern hardware.</p>
+      <p style="font-size:0.85rem;">The original 1989 version is still mastered by speedrunners who beat it under 19 minutes — a testament to timeless design and deep movement mastery. The community keeps the game alive on modern hardware via emulation and source ports.</p>
     </div>
     <div style="background: #0f1522b3; border-radius: 1.2rem; padding: 1rem; border-left: 3px solid #e6b422;">
       <i class="fas fa-globe" style="font-size: 1.3rem; color: #f5cd6e;"></i>
       <h3 style="margin: 0.2rem 0; font-size: 1rem;">Global Fandom</h3>
-      <p style="font-size:0.85rem;">From Iran to Japan, Prince of Persia resonated across cultures, blending Middle Eastern storytelling with universal themes of courage, time, and redemption.</p>
+      <p style="font-size:0.85rem;">From Iran to Japan, Prince of Persia resonated across cultures, blending Middle Eastern storytelling with universal themes of courage, time, and redemption. Fan remakes and dedicated forums continue to celebrate its Persian aesthetics and challenging gameplay.</p>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
     <p><i class="fas fa-hourglass-end"></i> The sands of time never erase legends. <strong>Prince of Persia</strong> — 1989 → Forever.</p>
-    <p style="margin-top: 6px;">📁 <strong>Image folder:</strong> Place <strong>prince1.png, prince2.png, prince3.png, prince4.png</strong> inside <strong>/img/</strong> next to index.html.<br>🏺 Historical tribute to Jordan Mechner, Brøderbund Software, and Ubisoft.</p>
+    <p style="margin-top: 6px;">📁 <strong>Image folder setup:</strong> Place <strong>prince1.png, prince2.png, prince3.png, prince4.png</strong> inside an <strong>/img/</strong> folder (same level as index.html).<br>🏺 Deepest respect to Jordan Mechner, Brøderbund Software, and Ubisoft for creating an immortal journey.</p>
     <div class="btn-soft" style="justify-content: center; margin-top: 0.7rem;">
-      <i class="fas fa-mobile-alt"></i> Pure vertical flow — image → text · mobile first
+      <i class="fas fa-mobile-alt"></i> Pure vertical mobile flow — image · text · image · text
     </div>
   </footer>
 </div>
